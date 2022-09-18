@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }} test</h1>
+    <h1 className="text-3xl font-bold underline">Hello world!</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
