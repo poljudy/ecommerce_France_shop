@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # ecommerce-vue
 =======
+=======
+>>>>>>> dev
 # ecommerce-vue
 
 ## Project setup
@@ -25,4 +28,7 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+<<<<<<< HEAD
+>>>>>>> dev
+=======
 >>>>>>> dev
