@@ -6,6 +6,8 @@
     placeholder="Search..."
     name="search"
     id=""
+    v-model="searchFilter"
+    @:change="increasePageOne()"
   />
 
   <div v-for="product in products" :key="product.id">
@@ -18,12 +20,23 @@
   <div>limit: {{ limit }}</div>
   <div>total pages: {{ totalPages }}</div>
   <div>totals products : {{ totalProducts }}</div>
+  <div>test : {{ test }}</div>
+  <div class="roulette flex">
+    <div v-if="page > 1" @click="decreasePageOne">Prec</div>
+    <div>{{ page }}</div>
+    <div v-if="page < totalPages" @click="increasePageOne">Suiv</div>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "HomeView",
+  data() {
+    return {
+      searchFilter: "",
+    };
+  },
   components: {},
   computed: {
     products() {
@@ -40,6 +53,21 @@ export default defineComponent({
     },
     totalProducts() {
       return this.$store.getters.getTotalProducts;
+    },
+    test() {
+      return this.$store.getters.getTest;
+    },
+  },
+  methods: {
+    increasePageOne() {
+      if (this.page < this.totalPages) {
+        this.$store.dispatch("increasePageOne");
+      }
+    },
+    decreasePageOne() {
+      if (this.page > 1) {
+        this.$store.dispatch("decreasePageOne");
+      }
     },
   },
   created() {

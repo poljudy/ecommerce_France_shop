@@ -7,15 +7,17 @@ const store = createStore({
     total_pages: null,
     total_products: null,
     products: [],
+    product: null,
+    test: null,
   },
   getters: {
     getProducts: (state) => state.products,
-    getProduct: (state) => (id) =>
-      state.products.find((product) => product.id === id),
+    getProduct: (state) => state.product,
     getPage: (state) => state.page,
     getLimit: (state) => state.limit,
     getTotalPages: (state) => state.total_pages,
     getTotalProducts: (state) => state.total_products,
+    getTest: (state) => state.test,
   },
   mutations: {
     SET_PRODUCTS(state, products) {
@@ -33,9 +35,18 @@ const store = createStore({
     SET_TOTALPRODUCTS(state, total_products) {
       state.total_products = total_products;
     },
+    SET_TEST(state, test) {
+      state.test = test;
+    },
   },
   actions: {
-    async fetchProducts({ commit }) {
+    increasePageOne({ commit }) {
+      commit("SET_PAGES", this.state.page + 1);
+    },
+    decreasePageOne({ commit }) {
+      commit("SET_PAGES", this.state.page - 1);
+    },
+    async fetchProducts({ commit }, filter) {
       try {
         const data = await axios.get(
           "https://otakod.es/hetic/ecommerce-api/products"
@@ -45,10 +56,14 @@ const store = createStore({
         commit("SET_LIMIT", data.data.limit);
         commit("SET_TOTALPAGES", data.data.total_pages);
         commit("SET_TOTALPRODUCTS", data.data.total_products);
+        commit("SET_TEST", filter);
       } catch (error) {
         alert(error);
         console.log(error);
       }
+    },
+    async fetchProduct({ commit }, id) {
+      console.log(id);
     },
   },
   modules: {},
