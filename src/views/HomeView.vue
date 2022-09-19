@@ -1,25 +1,49 @@
 <template>
   <div class="home">list of products</div>
-  <div v-for="user in users" :key="user">{{ user }}</div>
-</template>
+  <input
+    class="bg-red-200"
+    type="text"
+    placeholder="Search..."
+    name="search"
+    id=""
+  />
 
-<script>
-import { computed } from "vue";
+  <div v-for="product in products" :key="product.id">
+    <router-link :to="{ name: 'product', params: { id: product.id } }">
+      {{ product.title }}, {{ product.id }}
+    </router-link>
+    |
+  </div>
+  <div>page:{{ page }}</div>
+  <div>limit: {{ limit }}</div>
+  <div>total pages: {{ totalPages }}</div>
+  <div>totals products : {{ totalProducts }}</div>
+</template>
+<script lang="ts">
 import { defineComponent } from "vue";
-//import the global store object from Vuex
-import { useStore } from "vuex";
 
 export default defineComponent({
   name: "HomeView",
   components: {},
   computed: {
-    users() {
-      // return store.state.products;
+    products() {
       return this.$store.getters.getProducts;
+    },
+    page() {
+      return this.$store.getters.getPage;
+    },
+    limit() {
+      return this.$store.getters.getLimit;
+    },
+    totalPages() {
+      return this.$store.getters.getTotalPages;
+    },
+    totalProducts() {
+      return this.$store.getters.getTotalProducts;
     },
   },
   created() {
-    console.log(this.$store.dispatch("fetchProducts"));
+    this.$store.dispatch("fetchProducts");
   },
 });
 </script>
