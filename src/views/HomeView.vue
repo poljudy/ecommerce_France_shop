@@ -62,11 +62,13 @@ export default defineComponent({
     increasePageOne() {
       if (this.page < this.totalPages) {
         this.$store.dispatch("increasePageOne");
+        this.$store.dispatch("fetchProducts");
       }
     },
     decreasePageOne() {
       if (this.page > 1) {
         this.$store.dispatch("decreasePageOne");
+        this.$store.dispatch("fetchProducts");
       }
     },
   },
