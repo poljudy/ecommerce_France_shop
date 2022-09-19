@@ -2,7 +2,7 @@ import { createStore } from "vuex";
 import axios from "axios";
 const store = createStore({
   state: {
-    page: null,
+    page: 1,
     limit: null,
     total_pages: null,
     total_products: null,
@@ -49,7 +49,7 @@ const store = createStore({
     async fetchProducts({ commit }, filter) {
       try {
         const data = await axios.get(
-          "https://otakod.es/hetic/ecommerce-api/products"
+          `https://otakod.es/hetic/ecommerce-api/products?page=${this.state.page}`
         );
         commit("SET_PRODUCTS", data.data.products);
         commit("SET_PAGES", data.data.page);
