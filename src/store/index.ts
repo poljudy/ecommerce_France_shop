@@ -2,10 +2,18 @@ import { createStore } from "vuex";
 import axios from "axios";
 const store = createStore({
   state: {
+    page: null,
+    limit: null,
+    total_pages: null,
+    total_products: null,
     products: [],
   },
   getters: {
     getProducts: (state) => state.products,
+    getPage: (state) => state.page,
+    getLimit: (state) => state.limit,
+    getTotalPages: (state) => state.total_pages,
+    getTotalProducts: (state) => state.total_products,
   },
   mutations: {
     SET_PRODUCTS(state, products) {
