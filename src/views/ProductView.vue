@@ -1,12 +1,12 @@
 <template>
-  <div class="home">list of products</div>
+  <div class="home">this is product page</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "HomeView",
+  name: "ProductView",
   components: {},
 });
 </script>
