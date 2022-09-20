@@ -9,12 +9,27 @@
     v-model="searchFilter"
     @:change="search()"
   />
+  <div class="grid grid-cols-4 gap-4">
+    <div
+      v-for="product in products"
+      :key="product.id"
+      class="m-12 block bg-teal-200"
+    >
+      <router-link :to="{ name: 'product', params: { id: product.id } }">
+        <div class="w-32 h-56 bg-red-300">
+          {{ product.title }}, {{ product.id }} ,
 
-  <div v-for="product in products" :key="product.id">
-    <router-link :to="{ name: 'product', params: { id: product.id } }">
-      {{ product.title }}, {{ product.id }}
-    </router-link>
-    |
+          <div>
+            <div :class="[product.priceDiscount ? 'barred' : '']">
+              {{ product.price }}
+            </div>
+            <div>
+              {{ product.priceDiscount ? product.priceDiscount : "" }}
+            </div>
+          </div>
+        </div>
+      </router-link>
+    </div>
   </div>
   <div>page:{{ page }}</div>
   <div>limit: {{ limit }}</div>
