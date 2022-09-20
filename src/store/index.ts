@@ -9,6 +9,7 @@ const store = createStore({
     products: [],
     product: null,
     test: null,
+    search: null,
   },
   getters: {
     getProducts: (state) => state.products,
@@ -18,6 +19,7 @@ const store = createStore({
     getTotalPages: (state) => state.total_pages,
     getTotalProducts: (state) => state.total_products,
     getTest: (state) => state.test,
+    getSearch: (state) => state.search,
   },
   mutations: {
     SET_PRODUCTS(state, products) {
@@ -38,6 +40,9 @@ const store = createStore({
     SET_TEST(state, test) {
       state.test = test;
     },
+    SET_SEARCH(state, search) {
+      state.search = search;
+    },
   },
   actions: {
     increasePageOne({ commit }) {
@@ -46,17 +51,22 @@ const store = createStore({
     decreasePageOne({ commit }) {
       commit("SET_PAGES", this.state.page - 1);
     },
+    assignSearch({ commit }, search) {
+      commit("SET_SEARCH", search);
+    },
     async fetchProducts({ commit }, filter) {
+      let url = `https://otakod.es/hetic/ecommerce-api/products?page=${this.state.page}`;
+      if (this.state.search !== null) {
+        url += `&search=${this.state.search}`;
+      }
       try {
-        const data = await axios.get(
-          `https://otakod.es/hetic/ecommerce-api/products?page=${this.state.page}`
-        );
+        const data = await axios.get(url);
         commit("SET_PRODUCTS", data.data.products);
         commit("SET_PAGES", data.data.page);
         commit("SET_LIMIT", data.data.limit);
         commit("SET_TOTALPAGES", data.data.total_pages);
         commit("SET_TOTALPRODUCTS", data.data.total_products);
-        commit("SET_TEST", filter);
+        commit("SET_TEST", url);
       } catch (error) {
         alert(error);
         console.log(error);

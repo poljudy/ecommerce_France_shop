@@ -7,7 +7,7 @@
     name="search"
     id=""
     v-model="searchFilter"
-    @:change="increasePageOne()"
+    @:change="search()"
   />
 
   <div v-for="product in products" :key="product.id">
@@ -22,9 +22,21 @@
   <div>totals products : {{ totalProducts }}</div>
   <div>test : {{ test }}</div>
   <div class="roulette flex">
-    <div v-if="page > 1" @click="decreasePageOne">Prec</div>
-    <div>{{ page }}</div>
-    <div v-if="page < totalPages" @click="increasePageOne">Suiv</div>
+    <div
+      class="w-24 h-24 bg-teal-500 mx-12 cursor-pointer"
+      :class="[page > 1 ? 'bg-teal-500' : 'bg-gray-200']"
+      @click="page > 1 ? decreasePageOne() : log()"
+    >
+      Prec
+    </div>
+    <div class="w-24 h-24 bg-teal-500 mx-12">{{ page }}</div>
+    <div
+      class="w-24 h-24 bg-teal-500 mx-12 cursor-pointer"
+      v-if="page < totalPages"
+      @click="increasePageOne"
+    >
+      Suiv
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -59,21 +71,33 @@ export default defineComponent({
     },
   },
   methods: {
+    makeRequest() {
+      this.$store.dispatch("fetchProducts");
+    },
+    search() {
+      console.log(this.searchFilter);
+      this.$store.dispatch("assignSearch", this.searchFilter);
+
+      this.makeRequest();
+    },
     increasePageOne() {
       if (this.page < this.totalPages) {
         this.$store.dispatch("increasePageOne");
-        this.$store.dispatch("fetchProducts");
+        this.makeRequest();
       }
     },
     decreasePageOne() {
       if (this.page > 1) {
         this.$store.dispatch("decreasePageOne");
-        this.$store.dispatch("fetchProducts");
+        this.makeRequest();
       }
+    },
+    log() {
+      console.log(this.$store.search);
     },
   },
   created() {
-    this.$store.dispatch("fetchProducts");
+    this.makeRequest();
   },
 });
 </script>
