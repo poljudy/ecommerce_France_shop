@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 .barred {
   text-decoration: line-through;
 }
@@ -9,53 +10,31 @@
   margin: auto;
   margin: 30px auto;
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .search__input {
   height: 4rem;
   border: none;
   border-radius: 1rem;
   font-size: 1.4rem;
   padding-left: 3.8rem;
-  -webkit-box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
-          box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
+  box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7,
+    inset -0.2rem -0.2rem 0.5rem #fff;
   background: none;
   font-family: inherit;
   color: #9baacf;
 }
-
-.search__input::-webkit-input-placeholder {
-  color: #bec8e4;
-}
-
-.search__input:-ms-input-placeholder {
-  color: #bec8e4;
-}
-
-.search__input::-ms-input-placeholder {
-  color: #bec8e4;
-}
-
 .search__input::placeholder {
   color: #bec8e4;
 }
-
 .search__input:focus {
   outline: none;
-  -webkit-box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #ffffff;
-          box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #ffffff;
+  box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #ffffff;
 }
-
 .search__input:focus + .search__icon {
   color: #6d5dfc;
 }
-
 .search__icon {
   height: 2rem;
   position: absolute;
@@ -63,16 +42,11 @@
   padding: 3px;
   border-radius: 5px;
   margin-left: 1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   color: #9baacf;
-  -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
 }
-
 .search__input:focus + .search__icon:hover {
   background-color: #8abdff;
   cursor: pointer;
 }
-/*# sourceMappingURL=style.css.map */
