@@ -1,7 +1,17 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/product/">Product </router-link> |
+    <router-link
+      to="/product/"
+      :class="[
+        {
+          'router-link-exact-active active':
+            $route.path.indexOf('product') > -1,
+        },
+      ]"
+      >Product
+    </router-link>
+    |
     <router-link to="/cart">Cart</router-link>
   </nav>
   <router-view />
