@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     total
-    {{ total }}
+    {{ total }} €
   </div>
   <div @click="clear()">clear</div>
   <div @click="test()">test</div>
@@ -9,7 +9,7 @@
     <div
       v-for="item in cart"
       :key="item"
-      class="bg-gray-300 mx-8 rounded flex items-center"
+      class="bg-gray-300 mx-8 rounded flex items-center my-4"
     >
       <div>
         <img
@@ -19,16 +19,21 @@
           class="w-32 p-4"
         />
       </div>
-      <div>{{ item.product.title }}</div>
-      <ProductCart :product="item.product" />
-      <div>
-        total
-        {{
-          item.product.priceDiscount
-            ? getNumberFromPrice(item.product.priceDiscount) * item.quantity
-            : getNumberFromPrice(item.product.price) * item.quantity
-        }}
+      <div class="text-left w-1/3">
+        <div>
+          {{ item.product.title }}
+        </div>
+        <div class="text-xs text-gray-400">
+          total
+          {{
+            item.product.priceDiscount
+              ? getNumberFromPrice(item.product.priceDiscount) * item.quantity
+              : getNumberFromPrice(item.product.price) * item.quantity
+          }}
+        </div>
       </div>
+      <ProductCart :product="item.product" />
+      <div @click="deleteItem(item.product)">delete</div>
     </div>
   </div>
 </template>
@@ -84,6 +89,31 @@ export default defineComponent({
     makeRequest(id) {
       this.$store.dispatch("fetchProduct", id);
     },
+    modifyCart(cart) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      window.dispatchEvent(
+        new CustomEvent("cart-localstorage-changed", {
+          detail: {
+            storage: localStorage.getItem("cart"),
+          },
+        })
+      );
+    },
+    deleteItem(product) {
+      const existingProduct = this.cart.find(
+        (element) => element.product.id === product.id
+      );
+      const indexOf = this.cart.indexOf(existingProduct);
+      this.cart.splice(indexOf, 1);
+      this.modifyCart(this.cart);
+      window.dispatchEvent(
+        new CustomEvent("cart-localstorage-changed", {
+          detail: {
+            storage: localStorage.getItem("cart"),
+          },
+        })
+      );
+    },
   },
   mounted() {
     console.log("mounted");
@@ -92,6 +122,7 @@ export default defineComponent({
       this.cart = this.getCart();
       this.total = this.getTotal();
     });
+    this.total = this.getTotal();
   },
 });
 </script>
