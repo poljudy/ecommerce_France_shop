@@ -1,10 +1,20 @@
 <template>
-  <div class="home">
-    total
-    {{ total }} €
+  <div class="text-left flex items-center justify-around">
+    <div>
+      <div>
+        Prix total : <span class="font-bold">{{ total.toFixed(2) }}</span> €
+      </div>
+      <div>
+        Nombres de produits: <span class="font-bold">{{ totalProducts }}</span>
+      </div>
+    </div>
+    <div
+      @click="clear()"
+      class="rounded bg-gray-300 hover:bg-gray-600 transition-all py-2 px-4 cursor-pointer hover:text-white"
+    >
+      Supprimer tout le panier
+    </div>
   </div>
-  <div @click="clear()">clear</div>
-  <div @click="test()">test</div>
   <div v-if="cart">
     <div
       v-for="item in cart"
@@ -56,6 +66,7 @@ export default defineComponent({
     return {
       cart: this.getCart(),
       total: 0,
+      totalProducts: 0,
     };
   },
   computed: {},
@@ -64,7 +75,7 @@ export default defineComponent({
       console.log(this.getCart());
     },
     getNumberFromPrice(str) {
-      return parseFloat(str.slice(0, -1));
+      return parseInt(str.slice(0, -1));
     },
     clear() {
       localStorage.clear();
@@ -79,6 +90,13 @@ export default defineComponent({
         total += item.product.priceDiscount
           ? this.getNumberFromPrice(item.product.priceDiscount) * item.quantity
           : this.getNumberFromPrice(item.product.price) * item.quantity;
+      });
+      return total;
+    },
+    getTotalProducts() {
+      let total = 0;
+      this.cart.forEach((item) => {
+        total += item.quantity;
       });
       return total;
     },
@@ -123,10 +141,12 @@ export default defineComponent({
   mounted() {
     console.log("mounted");
 
-    window.addEventListener("cart-localstorage-changed", (event) => {
+    window.addEventListener("cart-localstorage-changed", () => {
       this.cart = this.getCart();
       this.total = this.getTotal();
+      this.totalProducts = this.getTotalProducts();
     });
+    this.totalProducts = this.getTotalProducts();
     this.total = this.getTotal();
   },
 });
