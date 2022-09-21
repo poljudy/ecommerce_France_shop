@@ -30,38 +30,44 @@
             </div>
           </div>
           <!-- cart -->
-          <div
-            v-if="isInCartVar(product) && this.getQuantityInCart(product) > 0"
-          >
+          <div>
             <div
-              @click="
-                this.getQuantityInCart(product) > 0
-                  ? decreaseCartByOne(product)
-                  : ''
-              "
-              class="bg-teal-500 cursor-pointer"
+              v-if="isInCartVar(product) && this.getQuantityInCart(product) > 0"
             >
-              -
+              <div
+                @click="
+                  this.getQuantityInCart(product) > 0
+                    ? decreaseCartByOne(product)
+                    : ''
+                "
+                class="bg-teal-500 cursor-pointer"
+              >
+                -
+              </div>
+              <div>Quantity : {{ this.getQuantityInCart(product) }}</div>
+              <div
+                @click="
+                  this.getQuantityInCart(product) < product.stock
+                    ? increaseCartByOne(product)
+                    : ''
+                "
+                class="bg-teal-500 cursor-pointer"
+              >
+                +
+              </div>
             </div>
-            <div>Quantity : {{ this.getQuantityInCart(product) }}</div>
             <div
-              @click="
-                this.getQuantityInCart(product) < product.stock
-                  ? increaseCartByOne(product)
-                  : ''
-              "
-              class="bg-teal-500 cursor-pointer"
+              v-else
+              @click="increaseCartByOne(product)"
+              class="bg-green-300 cursor-pointer"
             >
-              +
+              add
             </div>
           </div>
-          <div
-            v-else
-            @click="increaseCartByOne(product)"
-            class="bg-green-300 cursor-pointer"
-          >
-            add
-          </div>
+          <!-- Router link -->
+          <router-link :to="{ name: 'product', params: { id: product.id } }">
+            Go
+          </router-link>
         </div>
         <!-- </router-link> -->
       </div>
@@ -103,9 +109,6 @@ export default defineComponent({
   },
   components: {},
   computed: {
-    // cart() {
-    //   return this.$store.getters.getCart;
-    // },
     products() {
       return this.$store.getters.getProducts;
     },

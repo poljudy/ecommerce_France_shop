@@ -27,6 +27,9 @@ const store = createStore({
     SET_PRODUCTS(state, products) {
       state.products = products;
     },
+    SET_PRODUCT(state, product) {
+      state.product = product;
+    },
     SET_PAGES(state, page) {
       state.page = page;
     },
@@ -62,7 +65,7 @@ const store = createStore({
     assignSearch({ commit }, search) {
       commit("SET_SEARCH", search);
     },
-    async fetchProducts({ commit }, filter) {
+    async fetchProducts({ commit }) {
       let url = `https://otakod.es/hetic/ecommerce-api/products?page=${this.state.page}`;
       if (this.state.search !== null) {
         url += `&search=${this.state.search}`;
@@ -81,7 +84,14 @@ const store = createStore({
       }
     },
     async fetchProduct({ commit }, id) {
-      console.log(id);
+      const url = `https://otakod.es/hetic/ecommerce-api/products/${id}`;
+      try {
+        const data = await axios.get(url);
+        commit("SET_PRODUCT", data.data);
+      } catch (error) {
+        alert(error);
+        console.log(error);
+      }
     },
   },
   modules: {},
