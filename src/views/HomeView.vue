@@ -18,7 +18,7 @@
       <!-- <router-link :to="{ name: 'product', params: { id: product.id } }"> -->
       <div>
         <div class="w-32 h-56 bg-red-300">
-          {{ product.title }}, {{ product.id }} ,
+          {{ product.title }}, {{ product.id }} ,{{ product.stock }}
 
           <!-- price -->
           <div>
@@ -30,7 +30,31 @@
             </div>
           </div>
           <!-- cart -->
-          <div v-if="isInCartVar(product)">Is in cart</div>
+          <div
+            v-if="isInCartVar(product) && this.getQuantityInCart(product) > 0"
+          >
+            <div
+              @click="
+                this.getQuantityInCart(product) > 0
+                  ? decreaseCartByOne(product)
+                  : ''
+              "
+              class="bg-teal-500 cursor-pointer"
+            >
+              -
+            </div>
+            <div>Quantity : {{ this.getQuantityInCart(product) }}</div>
+            <div
+              @click="
+                this.getQuantityInCart(product) < product.stock
+                  ? increaseCartByOne(product)
+                  : ''
+              "
+              class="bg-teal-500 cursor-pointer"
+            >
+              +
+            </div>
+          </div>
           <div
             v-else
             @click="increaseCartByOne(product)"
@@ -58,7 +82,7 @@
     </div>
     <div class="w-24 h-24 bg-teal-500 mx-12">{{ page }}</div>
     <div
-      class="w-24 h-24 bg-teal-500 mx-12 cursor-pointer"
+      class="w-24 h-24 mx-12 bg-teal-500 cursor-pointer"
       v-if="page < totalPages"
       @click="increasePageOne"
     >
@@ -118,13 +142,14 @@ export default defineComponent({
       console.log(this.getCart());
     },
     isInCart(product) {
-      var cart = this.getCart();
+      const cart = this.getCart();
       return cart.find((element) => element.id === product.id);
     },
     isInCartVar(product) {
-      var cart = this.cart;
+      const cart = this.cart;
       return cart.find((element) => element.id === product.id);
     },
+
     increaseCartByOne(product) {
       var cart = this.getCart();
       if (!this.isInCart(product)) {
@@ -137,11 +162,36 @@ export default defineComponent({
         cart[indexOf].quantity += 1;
       }
       this.modifyCart(cart);
-      this.logCart();
+      // this.logCart();
+      console.log(product);
 
       this.updateCartVar();
-      console.log("cartvar");
-      console.log(this.cart);
+      // console.log("cartvar");
+      // console.log(this.cart);
+    },
+    decreaseCartByOne(product) {
+      var cart = this.getCart();
+      if (this.isInCart(product)) {
+        const existingProduct = cart.find(
+          (element) => element.id === product.id
+        );
+        const indexOf = cart.indexOf(existingProduct);
+        cart[indexOf].quantity -= 1;
+      }
+      this.modifyCart(cart);
+      // this.logCart();
+
+      this.updateCartVar();
+      // console.log("cartvar");
+      // console.log(this.cart);
+    },
+    getQuantityInCart(product) {
+      const cart = this.getCart();
+      if (this.isInCart) {
+        return cart.find((element) => element.id === product.id).quantity;
+      } else {
+        return 0;
+      }
     },
     makeRequest() {
       this.$store.dispatch("fetchProducts");
