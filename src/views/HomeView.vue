@@ -30,7 +30,7 @@
             </div>
           </div>
           <!-- cart -->
-          <div v-if="isInCart(product)">Is in cart</div>
+          <div v-if="isInCartVar(product)">Is in cart</div>
           <div
             v-else
             @click="increaseCartByOne(product)"
@@ -74,13 +74,14 @@ export default defineComponent({
   data() {
     return {
       searchFilter: "",
+      cart: this.getCart(),
     };
   },
   components: {},
   computed: {
-    cart() {
-      return this.$store.getters.getCart;
-    },
+    // cart() {
+    //   return this.$store.getters.getCart;
+    // },
     products() {
       return this.$store.getters.getProducts;
     },
@@ -101,6 +102,12 @@ export default defineComponent({
     },
   },
   methods: {
+    reload() {
+      location.reload();
+    },
+    updateCartVar() {
+      this.cart = this.getCart();
+    },
     getCart() {
       return JSON.parse(localStorage.getItem("cart"));
     },
@@ -112,6 +119,10 @@ export default defineComponent({
     },
     isInCart(product) {
       var cart = this.getCart();
+      return cart.find((element) => element.id === product.id);
+    },
+    isInCartVar(product) {
+      var cart = this.cart;
       return cart.find((element) => element.id === product.id);
     },
     increaseCartByOne(product) {
@@ -127,10 +138,10 @@ export default defineComponent({
       }
       this.modifyCart(cart);
       this.logCart();
-      // this.$store.dispatch(
-      //   "modifyCart",
-      //   this.$store.state.
-      // );
+
+      this.updateCartVar();
+      console.log("cartvar");
+      console.log(this.cart);
     },
     makeRequest() {
       this.$store.dispatch("fetchProducts");
