@@ -1,5 +1,8 @@
 <template>
   <div class="mx-auto">
+    <!-- <div class="text-black text-xl">
+      {{ cart.length }}
+    </div> -->
     <div
       v-if="isInCartVar(product) && this.getQuantityInCart(product) > 0"
       class="flex justify-around items-center"
@@ -38,10 +41,10 @@
     </div>
     <div
       v-else
-      @click="increaseCartByOne(product)"
+      @click="product.stock > 0 ? increaseCartByOne(product) : ''"
       class="bg-teal-500 cursor-pointer text-center text-lg font-bold uppercase rounded-full py-2 px-8 margin-auto text-white"
     >
-      add to cart
+      {{ product.stock > 0 ? "add to cart" : "No stock" }}
     </div>
   </div>
 </template>
@@ -67,20 +70,22 @@ export default {
     },
     isInCart(product) {
       const cart = this.getCart();
-      return cart.find((element) => element.id === product.id);
+
+      return cart.find((element) => element.product.id === product.id);
     },
     isInCartVar(product) {
       const cart = this.cart;
-      return cart.find((element) => element.id === product.id);
+      return cart.find((element) => element.product.id === product.id);
     },
 
     increaseCartByOne(product) {
       var cart = this.getCart();
       if (!this.isInCart(product)) {
-        cart.push({ id: product.id, quantity: 1 });
+        cart.push({ product: product, quantity: 1 });
+        console.log(this.getCart());
       } else {
         const existingProduct = cart.find(
-          (element) => element.id === product.id
+          (element) => element.product.id === product.id
         );
         const indexOf = cart.indexOf(existingProduct);
         cart[indexOf].quantity += 1;
@@ -97,10 +102,13 @@ export default {
       var cart = this.getCart();
       if (this.isInCart(product)) {
         const existingProduct = cart.find(
-          (element) => element.id === product.id
+          (element) => element.product.id === product.id
         );
         const indexOf = cart.indexOf(existingProduct);
         cart[indexOf].quantity -= 1;
+        if (cart[indexOf].quantity == 0) {
+          cart.splice(indexOf, 1);
+        }
       }
       this.modifyCart(cart);
       // this.logCart();
@@ -112,7 +120,8 @@ export default {
     getQuantityInCart(product) {
       const cart = this.getCart();
       if (this.isInCart) {
-        return cart.find((element) => element.id === product.id).quantity;
+        return cart.find((element) => element.product.id === product.id)
+          .quantity;
       } else {
         return 0;
       }
