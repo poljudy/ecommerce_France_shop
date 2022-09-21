@@ -10,7 +10,8 @@ const store = createStore({
     product: null,
     test: null,
     search: null,
-    cart: [],
+    cart: window.localStorage.getItem("cart"),
+    total: 0,
   },
   getters: {
     getProducts: (state) => state.products,
@@ -22,6 +23,7 @@ const store = createStore({
     getTest: (state) => state.test,
     getSearch: (state) => state.search,
     getCart: (state) => state.cart,
+    getTotal: (state) => state.total,
   },
   mutations: {
     SET_PRODUCTS(state, products) {
@@ -50,6 +52,9 @@ const store = createStore({
     },
     SET_CART(state, cart) {
       state.cart = cart;
+    },
+    SET_TOTAL(state, total) {
+      state.total = total;
     },
   },
   actions: {

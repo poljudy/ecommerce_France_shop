@@ -56,14 +56,34 @@ export default {
   data() {
     return {
       cart: this.getCart(),
+      total: this.getTotal(),
     };
   },
   methods: {
     getCart() {
       return JSON.parse(localStorage.getItem("cart"));
     },
+    getTotal() {
+      const cart = this.getCart();
+      let total = 0;
+      cart.forEach((element) => {
+        const priceStr = parseFloat(element.product.price.slice(0, -1));
+        console.log(typeof priceStr);
+
+        total += priceStr;
+      });
+      this.$emit("total", total);
+      return total;
+    },
     modifyCart(cart) {
       localStorage.setItem("cart", JSON.stringify(cart));
+      window.dispatchEvent(
+        new CustomEvent("cart-localstorage-changed", {
+          detail: {
+            storage: localStorage.getItem("cart"),
+          },
+        })
+      );
     },
     updateCartVar() {
       this.cart = this.getCart();
@@ -92,7 +112,7 @@ export default {
       }
       this.modifyCart(cart);
       // this.logCart();
-      console.log(product);
+      // console.log(product);
 
       this.updateCartVar();
       // console.log("cartvar");
@@ -111,11 +131,14 @@ export default {
         }
       }
       this.modifyCart(cart);
-      // this.logCart();
-
       this.updateCartVar();
-      // console.log("cartvar");
-      // console.log(this.cart);
+      window.dispatchEvent(
+        new CustomEvent("cart-localstorage-changed", {
+          detail: {
+            storage: localStorage.getItem("cart"),
+          },
+        })
+      );
     },
     getQuantityInCart(product) {
       const cart = this.getCart();
