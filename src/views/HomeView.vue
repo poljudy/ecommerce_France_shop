@@ -21,26 +21,38 @@
         :product="product"
       />
     </div>
-    <div>page:{{ page }}</div>
+    <!-- <div>page:{{ page }}</div>
     <div>limit: {{ limit }}</div>
     <div>total pages: {{ totalPages }}</div>
     <div>totals products : {{ totalProducts }}</div>
-    <div>test : {{ test }}</div>
-    <div class="roulette flex">
-      <div
-        class="w-24 h-24 bg-teal-500 mx-12 cursor-pointer"
-        :class="[page > 1 ? 'bg-teal-500' : 'bg-gray-200']"
-        @click="page > 1 ? decreasePageOne() : log()"
-      >
-        Prec
-      </div>
-      <div class="w-24 h-24 bg-teal-500 mx-12">{{ page }}</div>
-      <div
-        class="w-24 h-24 mx-12 bg-teal-500 cursor-pointer"
-        v-if="page < totalPages"
-        @click="increasePageOne"
-      >
-        Suiv
+    <div>test : {{ test }}</div> -->
+    <div class="inline-block m-0 py-4">
+      <div class="roulette flex">
+        <div
+          class="w-12 h-12 flex items-center justify-center text-white bg-teal-500 mx-12 cursor-pointer"
+          :class="[
+            page > 1 ? 'bg-teal-500 font-bold ' : 'bg-gray-200 text-gray-500',
+          ]"
+          @click="page > 1 ? decreasePageOne() : log()"
+        >
+          <div class="truncate block text-xs mx-2">Précédent</div>
+        </div>
+        <div
+          class="w-12 h-12 flex items-center justify-center text-white bg-teal-500 mx-12 cursor-pointer font-bold"
+        >
+          {{ page }}
+        </div>
+        <div
+          class="w-12 h-12 flex items-center justify-center text-white bg-teal-500 mx-12 cursor-pointer"
+          :class="[
+            page < totalPages
+              ? 'bg-teal-500 font-bold '
+              : 'bg-gray-200 text-gray-500',
+          ]"
+          @click="page < totalPages ? increasePageOne() : log()"
+        >
+          <div class="truncate block text-xs mx-2">Suivant</div>
+        </div>
       </div>
     </div>
   </div>
