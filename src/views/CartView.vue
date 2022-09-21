@@ -29,11 +29,16 @@
             item.product.priceDiscount
               ? getNumberFromPrice(item.product.priceDiscount) * item.quantity
               : getNumberFromPrice(item.product.price) * item.quantity
-          }}
+          }}€
         </div>
       </div>
       <ProductCart :product="item.product" />
-      <div @click="deleteItem(item.product)">delete</div>
+      <div
+        @click="deleteItem(item.product)"
+        class="cursor-pointer w-12 h-12 flex items-center justify-center text-xl mr-5 hover:bg-gray-800 transition-all"
+      >
+        🗑️
+      </div>
     </div>
   </div>
 </template>
