@@ -48,22 +48,7 @@ export default defineComponent({
       total: 0,
     };
   },
-  computed: {
-    // total() {
-    //   let total = 0;
-    //   const cart = this.$store.getters.getCart;
-    //   console.log(cart);
-    //   cart.forEach((element) => {
-    //     total +=
-    //       this.getNumberFromPrice(element.product.price) * element.quantity;
-    //   });
-    //   console.log(total);
-    //   return total;
-    // },
-    // cart() {
-    //   return this.getCart();
-    // },
-  },
+  computed: {},
   methods: {
     test() {
       console.log(this.getCart());

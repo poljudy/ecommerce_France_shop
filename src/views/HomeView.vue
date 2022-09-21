@@ -124,8 +124,12 @@ export default defineComponent({
   },
   created() {
     this.makeRequest();
-    var cart = [];
-    this.modifyCart(cart);
+    console.log(localStorage.getItem("cart"));
+    console.log(localStorage.getItem("cart"));
+    if (!(localStorage.getItem("cart").length > 0)) {
+      var cart = [];
+      this.modifyCart(cart);
+    }
   },
 });
 </script>

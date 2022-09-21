@@ -14,6 +14,9 @@
       {{ product.title }}
     </div>
     <ProductPrice :product="product" />
+    <div class="text-xs text-gray-300">
+      {{ product.stock > 0 ? "" : "Out of stock" }}
+    </div>
   </router-link>
 </template>
 <script lang="ts">
@@ -41,37 +44,3 @@ export default {
   },
 };
 </script>
-
-<!-- cart -->
-<!-- <div>
-  <div v-if="isInCartVar(product) && this.getQuantityInCart(product) > 0">
-    <div
-      @click="
-        this.getQuantityInCart(product) > 0
-          ? decreaseCartByOne(product)
-          : ''
-      "
-      class="bg-teal-500 cursor-pointer"
-    >
-      -
-    </div>
-    <div>Quantity : {{ this.getQuantityInCart(product) }}</div>
-    <div
-      @click="
-        this.getQuantityInCart(product) < product.stock
-          ? increaseCartByOne(product)
-          : ''
-      "
-      class="bg-teal-500 cursor-pointer"
-    >
-      +
-    </div>
-  </div>
-  <div
-    v-else
-    @click="increaseCartByOne(product)"
-    class="bg-green-300 cursor-pointer"
-  >
-    add
-  </div>
-</div>-->
