@@ -10,6 +10,7 @@ const store = createStore({
     product: null,
     test: null,
     search: null,
+    cart: [],
   },
   getters: {
     getProducts: (state) => state.products,
@@ -20,6 +21,7 @@ const store = createStore({
     getTotalProducts: (state) => state.total_products,
     getTest: (state) => state.test,
     getSearch: (state) => state.search,
+    getCart: (state) => state.cart,
   },
   mutations: {
     SET_PRODUCTS(state, products) {
@@ -43,8 +45,14 @@ const store = createStore({
     SET_SEARCH(state, search) {
       state.search = search;
     },
+    SET_CART(state, cart) {
+      state.cart = cart;
+    },
   },
   actions: {
+    modifyCart({ commit }, cart) {
+      commit("SET_CART", cart);
+    },
     increasePageOne({ commit }) {
       commit("SET_PAGES", this.state.page + 1);
     },

@@ -15,10 +15,12 @@
       :key="product.id"
       class="m-12 block bg-teal-200"
     >
-      <router-link :to="{ name: 'product', params: { id: product.id } }">
+      <!-- <router-link :to="{ name: 'product', params: { id: product.id } }"> -->
+      <div>
         <div class="w-32 h-56 bg-red-300">
           {{ product.title }}, {{ product.id }} ,
 
+          <!-- price -->
           <div>
             <div :class="[product.priceDiscount ? 'barred' : '']">
               {{ product.price }}
@@ -27,8 +29,18 @@
               {{ product.priceDiscount ? product.priceDiscount : "" }}
             </div>
           </div>
+          <!-- cart -->
+          <div v-if="isInCart(product)">Is in cart</div>
+          <div
+            v-else
+            @click="increaseCartByOne(product)"
+            class="bg-green-300 cursor-pointer"
+          >
+            add
+          </div>
         </div>
-      </router-link>
+        <!-- </router-link> -->
+      </div>
     </div>
   </div>
   <div>page:{{ page }}</div>
@@ -66,6 +78,9 @@ export default defineComponent({
   },
   components: {},
   computed: {
+    cart() {
+      return this.$store.getters.getCart;
+    },
     products() {
       return this.$store.getters.getProducts;
     },
@@ -86,6 +101,37 @@ export default defineComponent({
     },
   },
   methods: {
+    getCart() {
+      return JSON.parse(localStorage.getItem("cart"));
+    },
+    modifyCart(cart) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    },
+    logCart() {
+      console.log(this.getCart());
+    },
+    isInCart(product) {
+      var cart = this.getCart();
+      return cart.find((element) => element.id === product.id);
+    },
+    increaseCartByOne(product) {
+      var cart = this.getCart();
+      if (!this.isInCart(product)) {
+        cart.push({ id: product.id, quantity: 1 });
+      } else {
+        const existingProduct = cart.find(
+          (element) => element.id === product.id
+        );
+        const indexOf = cart.indexOf(existingProduct);
+        cart[indexOf].quantity += 1;
+      }
+      this.modifyCart(cart);
+      this.logCart();
+      // this.$store.dispatch(
+      //   "modifyCart",
+      //   this.$store.state.
+      // );
+    },
     makeRequest() {
       this.$store.dispatch("fetchProducts");
     },
@@ -113,6 +159,8 @@ export default defineComponent({
   },
   created() {
     this.makeRequest();
+    var cart = [];
+    this.modifyCart(cart);
   },
 });
 </script>
