@@ -6,12 +6,12 @@
         alt=""
         class="w-full h-128 object-cover"
       />
-      <div class="absolute flex items-center">
+      <div class="absolute flex items-center justify-around">
         <div v-for="photo in product.images.photos" :key="photo">
           <img
             :src="photo"
             alt=""
-            class="top-full object-cover"
+            class="top-full w-24 object-cover"
             @click="selectImage(photo)"
           />
         </div>
@@ -39,7 +39,7 @@
       <ProductCart :product="product" class="mt-12" />
     </div>
   </div>
-  <div v-else>product loading?</div>
+  <div v-else>Aucun produit trouvé</div>
   <!-- <div @click="test">test</div> -->
 </template>
 

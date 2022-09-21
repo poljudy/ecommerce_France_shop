@@ -39,7 +39,7 @@
     <div
       v-else
       @click="increaseCartByOne(product)"
-      class="bg-teal-500 cursor-pointer text-center text-lg font-bold uppercase rounded-full py-2 px-8 margin-auto"
+      class="bg-teal-500 cursor-pointer text-center text-lg font-bold uppercase rounded-full py-2 px-8 margin-auto text-white"
     >
       add to cart
     </div>
