@@ -1,16 +1,29 @@
 <template>
-  <div class="home">this is product page</div>
-  <div v-if="product">product var {{ product.title }}</div>
+  <div v-if="product" class="flex bg-red-300 px-8">
+    <div class="w-1/2">
+      <img :src="product.images.photos[0]" alt="" class="w-full" />
+    </div>
+    <div class="w-1/2 text-left flex flex-col px-4 bg-green-300">
+      <div>{{ product.title }}</div>
+      <ProductPrice :product="product" />
+
+      <div class="">{{ product.description }}</div>
+      <ProductCart :product="product" />
+    </div>
+  </div>
   <div v-else>product loading?</div>
   <div @click="test">test</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import ProductPrice from "@/components/ProductPrice.vue";
+import ProductCart from "@/components/ProductCart.vue";
 
 export default defineComponent({
   name: "ProductView",
-  components: {},
+  components: { ProductPrice, ProductCart },
+
   data() {
     return {};
   },

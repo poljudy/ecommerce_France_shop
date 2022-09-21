@@ -166,7 +166,7 @@
     "chalk" "^2.0.0"
     "js-tokens" "^4.0.0"
 
-"@babel/parser@^7.16.4", "@babel/parser@^7.18.10", "@babel/parser@^7.19.1":
+"@babel/parser@^7.16.4", "@babel/parser@^7.18.10", "@babel/parser@^7.18.4", "@babel/parser@^7.19.1":
   "integrity" "sha512-h7RCSorm1DdTVGJf3P2Mhj3kdnkmF/EiysUkzS2TdgAYqyjFdMQJbVuXOBej2SBJaXan/lIVtT6KkGbyyq753A=="
   "resolved" "https://registry.npmmirror.com/@babel/parser/-/parser-7.19.1.tgz"
   "version" "7.19.1"
@@ -523,6 +523,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/web-bluetooth@^0.0.14":
+  "integrity" "sha512-5d2RhCard1nQUC3aHcq/gHzWYO6K0WJmAbjO7mQJgCQKtZpgXxv1rOM6O/dBDhDYYVutk1sciOgNSe+5YyfM8A=="
+  "resolved" "https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.14.tgz"
+  "version" "0.0.14"
+
 "@types/webpack-env@^1.15.2":
   "integrity" "sha512-56/MAlX5WMsPVbOg7tAxnYvNYMMWr/QJiIp6BxVSW3JJXUVzzOn64qW8TzQyMSqSUFM2+PVI4aUHcHOzIz/1tg=="
   "resolved" "https://registry.npmmirror.com/@types/webpack-env/-/webpack-env-1.18.0.tgz"
@@ -756,6 +761,15 @@
     "@vue/compiler-core" "3.2.39"
     "@vue/shared" "3.2.39"
 
+"@vue/compiler-sfc@2.7.10":
+  "integrity" "sha512-55Shns6WPxlYsz4WX7q9ZJBL77sKE1ZAYNYStLs6GbhIOMrNtjMvzcob6gu3cGlfpCR4bT7NXgyJ3tly2+Hx8Q=="
+  "resolved" "https://registry.npmjs.org/@vue/compiler-sfc/-/compiler-sfc-2.7.10.tgz"
+  "version" "2.7.10"
+  dependencies:
+    "@babel/parser" "^7.18.4"
+    "postcss" "^8.4.14"
+    "source-map" "^0.6.1"
+
 "@vue/compiler-sfc@3.2.39":
   "integrity" "sha512-fqAQgFs1/BxTUZkd0Vakn3teKUt//J3c420BgnYgEOoVdTwYpBTSXCMJ88GOBCylmUBbtquGPli9tVs7LzsWIA=="
   "resolved" "https://registry.npmmirror.com/@vue/compiler-sfc/-/compiler-sfc-3.2.39.tgz"
@@ -871,6 +885,28 @@
   "integrity" "sha512-Iu8Tbg3f+emIIMmI2ycSI8QcEuAUgPTgHwesDU1eKMLE4YC/c/sFbGc70QgMq31ijRftV0R7vCm9co6rldCeOA=="
   "resolved" "https://registry.npmmirror.com/@vue/web-component-wrapper/-/web-component-wrapper-1.3.0.tgz"
   "version" "1.3.0"
+
+"@vueuse/core@^8.2.0":
+  "integrity" "sha512-B/Mdj9TK1peFyWaPof+Zf/mP9XuGAngaJZBwPaXBvU3aCTZlx3ltlrFFFyMV4iGBwsjSCeUCgZrtkEj9dS2Y3Q=="
+  "resolved" "https://registry.npmjs.org/@vueuse/core/-/core-8.9.4.tgz"
+  "version" "8.9.4"
+  dependencies:
+    "@types/web-bluetooth" "^0.0.14"
+    "@vueuse/metadata" "8.9.4"
+    "@vueuse/shared" "8.9.4"
+    "vue-demi" "*"
+
+"@vueuse/metadata@8.9.4":
+  "integrity" "sha512-IwSfzH80bnJMzqhaapqJl9JRIiyQU0zsRGEgnxN6jhq7992cPUJIRfV+JHRIZXjYqbwt07E1gTEp0R0zPJ1aqw=="
+  "resolved" "https://registry.npmjs.org/@vueuse/metadata/-/metadata-8.9.4.tgz"
+  "version" "8.9.4"
+
+"@vueuse/shared@8.9.4":
+  "integrity" "sha512-wt+T30c4K6dGRMVqPddexEVLa28YwxW5OFIPmzUHICjphfAuBFTTdDoyqREZNDOFJZ44ARH1WWQNCUK8koJ+Ag=="
+  "resolved" "https://registry.npmjs.org/@vueuse/shared/-/shared-8.9.4.tgz"
+  "version" "8.9.4"
+  dependencies:
+    "vue-demi" "*"
 
 "@webassemblyjs/ast@1.11.1":
   "integrity" "sha512-ukBh14qFLjxTQNTXocdyksN5QdM28S1CxHt2rdskFyL+xFV7VremuBLVbmCePj+URalXBENx/9Lm7lnhihtCSw=="
@@ -1259,6 +1295,11 @@
   "integrity" "sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw=="
   "resolved" "https://registry.npmmirror.com/batch/-/batch-0.6.1.tgz"
   "version" "0.6.1"
+
+"bezier-easing@^2.1.0":
+  "integrity" "sha512-gbIqZ/eslnUFC1tjEvtz0sgx+xTK20wDnYMIA27VA04R7w6xxXQPZDbibjA9DTWZRA2CXtwHykkVzlCaAJAZig=="
+  "resolved" "https://registry.npmjs.org/bezier-easing/-/bezier-easing-2.1.0.tgz"
+  "version" "2.1.0"
 
 "big.js@^5.2.2":
   "integrity" "sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ=="
@@ -1856,6 +1897,11 @@
   "resolved" "https://registry.npmmirror.com/csstype/-/csstype-2.6.21.tgz"
   "version" "2.6.21"
 
+"csstype@^3.1.0":
+  "integrity" "sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw=="
+  "resolved" "https://registry.npmjs.org/csstype/-/csstype-3.1.1.tgz"
+  "version" "3.1.1"
+
 "debug@^3.2.7":
   "integrity" "sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ=="
   "resolved" "https://registry.npmmirror.com/debug/-/debug-3.2.7.tgz"
@@ -2001,6 +2047,11 @@
     "domelementtype" "^2.0.1"
     "domhandler" "^4.2.0"
     "entities" "^2.0.0"
+
+"dom-walk@^0.1.0":
+  "integrity" "sha512-6QvTW9mrGeIegrFXdtQi9pk7O/nSK6lSdXW2eqUspN5LWD7UTji2Fqw5V2YLjBpHEoU9Xl/eUWNpDeZvoyOv2w=="
+  "resolved" "https://registry.npmjs.org/dom-walk/-/dom-walk-0.1.2.tgz"
+  "version" "0.1.2"
 
 "domelementtype@^2.0.1", "domelementtype@^2.2.0":
   "integrity" "sha512-OLETBj6w0OsagBwdXnPdN0cnMfF9opN69co+7ZrbfPGrdpPVNBUj02spi6B1N7wChLQiPn4CSH/zJvXw56gmHw=="
@@ -2634,6 +2685,22 @@
   "resolved" "https://registry.npmmirror.com/get-stream/-/get-stream-6.0.1.tgz"
   "version" "6.0.1"
 
+"gitart-animate-number@^0.1.0":
+  "integrity" "sha512-yBIYXXej+qTTSVZn4Zci5t96T/1mHtzcLAi0J3WQ8kN1eRr7jaCvvYv+/TPZh14NIsc6/K1EcspsgL+FtJyiJQ=="
+  "resolved" "https://registry.npmjs.org/gitart-animate-number/-/gitart-animate-number-0.1.0.tgz"
+  "version" "0.1.0"
+  dependencies:
+    "bezier-easing" "^2.1.0"
+
+"gitart-scroll-carousel@^1.2.4":
+  "integrity" "sha512-lGZ6BWOcq9LIVX7RSzDRZOzrzi67a6HK8nBgG1WI6Vk5rL2IzdQczjLDSGPUC+oUOuDXvscYWq1Gaz9lVS6tkQ=="
+  "resolved" "https://registry.npmjs.org/gitart-scroll-carousel/-/gitart-scroll-carousel-1.2.4.tgz"
+  "version" "1.2.4"
+  dependencies:
+    "@vueuse/core" "^8.2.0"
+    "bezier-easing" "^2.1.0"
+    "gitart-animate-number" "^0.1.0"
+
 "glob-parent@^5.1.2", "glob-parent@~5.1.2":
   "integrity" "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow=="
   "resolved" "https://registry.npmmirror.com/glob-parent/-/glob-parent-5.1.2.tgz"
@@ -2671,6 +2738,14 @@
     "minimatch" "^3.1.1"
     "once" "^1.3.0"
     "path-is-absolute" "^1.0.0"
+
+"global@^4.3.2":
+  "integrity" "sha512-wv/LAoHdRE3BeTGz53FAamhGlPLhlssK45usmGFThIi4XqnBmjKQ16u+RNbP7WvigRZDxUsM0J3gcQ5yicaL0w=="
+  "resolved" "https://registry.npmjs.org/global/-/global-4.4.0.tgz"
+  "version" "4.4.0"
+  dependencies:
+    "min-document" "^2.19.0"
+    "process" "^0.11.10"
 
 "globals@^11.1.0":
   "integrity" "sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA=="
@@ -3408,6 +3483,13 @@
   "integrity" "sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg=="
   "resolved" "https://registry.npmmirror.com/mimic-fn/-/mimic-fn-2.1.0.tgz"
   "version" "2.1.0"
+
+"min-document@^2.19.0":
+  "integrity" "sha512-9Wy1B3m3f66bPPmU5hdA4DR4PB2OfDU/+GS3yAB7IQozE3tqXaVv2zOjgla7MEGSRv95+ILmOuvhLkOK6wJtCQ=="
+  "resolved" "https://registry.npmjs.org/min-document/-/min-document-2.19.0.tgz"
+  "version" "2.19.0"
+  dependencies:
+    "dom-walk" "^0.1.0"
 
 "mini-css-extract-plugin@^2.5.3":
   "integrity" "sha512-wd+SD57/K6DiV7jIR34P+s3uckTRuQvx0tKPcvjFlrEylk6P4mQ2KSWk1hblj1Kxaqok7LogKOieygXqBczNlg=="
@@ -4165,6 +4247,11 @@
   "resolved" "https://registry.npmmirror.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz"
   "version" "2.0.1"
 
+"process@^0.11.10":
+  "integrity" "sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A=="
+  "resolved" "https://registry.npmjs.org/process/-/process-0.11.10.tgz"
+  "version" "0.11.10"
+
 "progress-webpack-plugin@^1.0.12":
   "integrity" "sha512-sdiHuuKOzELcBANHfrupYo+r99iPRyOnw15qX+rNlVUqXGfjXdH4IgxriKwG1kNJwVswKQHMdj1hYZMcb9jFaA=="
   "resolved" "https://registry.npmmirror.com/progress-webpack-plugin/-/progress-webpack-plugin-1.0.16.tgz"
@@ -4298,6 +4385,11 @@
   "version" "3.6.0"
   dependencies:
     "picomatch" "^2.2.1"
+
+"regenerator-runtime@^0.12.1":
+  "integrity" "sha512-odxIc1/vDlo4iZcfXqRYFj0vpXFNoGdKMAUieAlFYO6m/nl5e9KR/beGf41z4a1FI+aQgtjhuaSlDxQ0hmkrHg=="
+  "resolved" "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz"
+  "version" "0.12.1"
 
 "regexpp@^3.1.0", "regexpp@^3.2.0":
   "integrity" "sha512-pq2bWo9mVD43nbts2wGv17XLiNLya+GklZ8kaDLV2Z08gDCsGpnKn9BFMepvWuHCbyVvY7J5o5+BVvoQbmlJLg=="
@@ -5134,6 +5226,20 @@
   "resolved" "https://registry.npmmirror.com/vary/-/vary-1.1.2.tgz"
   "version" "1.1.2"
 
+"vue-carousel@^0.18.0":
+  "integrity" "sha512-a2zxh7QJioDxNMguqcuJ7TPbfgK5bGDaAXIia7NWxPAWsEvNE4ZtHgsGu40L5Aha4uyjmNKXvleB14QAXFoKig=="
+  "resolved" "https://registry.npmjs.org/vue-carousel/-/vue-carousel-0.18.0.tgz"
+  "version" "0.18.0"
+  dependencies:
+    "global" "^4.3.2"
+    "regenerator-runtime" "^0.12.1"
+    "vue" "^2.5.17"
+
+"vue-demi@*":
+  "integrity" "sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A=="
+  "resolved" "https://registry.npmjs.org/vue-demi/-/vue-demi-0.13.11.tgz"
+  "version" "0.13.11"
+
 "vue-eslint-parser@^8.0.0", "vue-eslint-parser@^8.0.1":
   "integrity" "sha512-dzHGG3+sYwSf6zFBa0Gi9ZDshD7+ad14DGOdTLjruRVgZXe2J+DcZ9iUhyR48z5g1PqRa20yt3Njna/veLJL/g=="
   "resolved" "https://registry.npmmirror.com/vue-eslint-parser/-/vue-eslint-parser-8.3.0.tgz"
@@ -5181,7 +5287,7 @@
   "resolved" "https://registry.npmmirror.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@^2 || ^3.2.13", "vue@^3.0.2", "vue@^3.2.0", "vue@^3.2.13", "vue@3.2.39":
+"vue@^2 || ^3.2.13", "vue@^2.6.0 || ^3.2.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.2", "vue@^3.2.0", "vue@^3.2.13", "vue@^3.2.6", "vue@3.2.39":
   "integrity" "sha512-tRkguhRTw9NmIPXhzk21YFBqXHT2t+6C6wPOgQ50fcFVWnPdetmRqbmySRHznrYjX2E47u0cGlKGcxKZJ38R/g=="
   "resolved" "https://registry.npmmirror.com/vue/-/vue-3.2.39.tgz"
   "version" "3.2.39"
@@ -5191,6 +5297,14 @@
     "@vue/runtime-dom" "3.2.39"
     "@vue/server-renderer" "3.2.39"
     "@vue/shared" "3.2.39"
+
+"vue@^2.5.17":
+  "integrity" "sha512-HmFC70qarSHPXcKtW8U8fgIkF6JGvjEmDiVInTkKZP0gIlEPhlVlcJJLkdGIDiNkIeA2zJPQTWJUI4iWe+AVfg=="
+  "resolved" "https://registry.npmjs.org/vue/-/vue-2.7.10.tgz"
+  "version" "2.7.10"
+  dependencies:
+    "@vue/compiler-sfc" "2.7.10"
+    "csstype" "^3.1.0"
 
 "vuex@^4.0.0":
   "integrity" "sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q=="

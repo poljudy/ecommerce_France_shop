@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "gitart-scroll-carousel": "^1.2.4",
     "vue": "^3.2.13",
+    "vue-carousel": "^0.18.0",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },
