@@ -1,18 +1,46 @@
 <template>
-  <div v-if="product" class="flex bg-red-300 px-8">
-    <div class="w-1/2">
-      <img :src="product.images.photos[0]" alt="" class="w-full" />
+  <div v-if="product" class="grid grid-cols-2 gap-8 px-8">
+    <div class="relative">
+      <img
+        :src="selectedImage || product.images.photos[0]"
+        alt=""
+        class="w-full h-128 object-cover"
+      />
+      <div class="absolute flex items-center">
+        <div v-for="photo in product.images.photos" :key="photo">
+          <img
+            :src="photo"
+            alt=""
+            class="top-full object-cover"
+            @click="selectImage(photo)"
+          />
+        </div>
+      </div>
     </div>
-    <div class="w-1/2 text-left flex flex-col px-4 bg-green-300">
-      <div>{{ product.title }}</div>
-      <ProductPrice :product="product" />
+    <div class="text-left flex flex-col justify-center">
+      <div class="text-xl font-bold">{{ product.title }}</div>
+      <div class="text-sm text-gray-500">{{ product.stock }} en stock</div>
+      <div class="ml-auto mr-4">
+        <ProductPrice :product="product" class="mr-0 text-right" />
+      </div>
+      <div v-if="product.rating" class="">
+        <div class="flex items-center">
+          <div v-for="n in Math.floor(product.rating)" :key="n">⭐</div>
+          <div class="ml-2">{{ Math.floor(product.rating) }} / 5</div>
+          <div class="ml-4 text-sm text-gray-500">
+            {{ product.raters }} avis
+          </div>
+        </div>
+      </div>
 
-      <div class="">{{ product.description }}</div>
-      <ProductCart :product="product" />
+      <div class="w-3/4 text-sm text-gray-600 mt-8">
+        {{ product.description }}
+      </div>
+      <ProductCart :product="product" class="mt-12" />
     </div>
   </div>
   <div v-else>product loading?</div>
-  <div @click="test">test</div>
+  <!-- <div @click="test">test</div> -->
 </template>
 
 <script lang="ts">
@@ -24,15 +52,20 @@ export default defineComponent({
   name: "ProductView",
   components: { ProductPrice, ProductCart },
 
-  data() {
-    return {};
-  },
   computed: {
     product() {
       return this.$store.getters.getProduct;
     },
   },
+  data() {
+    return {
+      selectedImage: "",
+    };
+  },
   methods: {
+    selectImage(photo) {
+      this.selectedImage = photo;
+    },
     test() {
       console.log(this.product);
     },

@@ -1,15 +1,17 @@
 <template>
-  <div class="price flex items-center my-4 font-bold text-lg">
-    <div v-if="product.priceDiscount">
-      {{ product.priceDiscount }}
-      <!-- {{ product.priceDiscount ? product.priceDiscount : "" }} -->
-    </div>
-    <div
-      :class="[
-        product.priceDiscount ? 'barred ml-4 text-sm text-gray-500 ' : '',
-      ]"
-    >
-      {{ product.price }}
+  <div class="inline-block">
+    <div class="price flex items-center my-4 font-bold text-lg">
+      <div v-if="product.priceDiscount">
+        {{ product.priceDiscount }}
+        <!-- {{ product.priceDiscount ? product.priceDiscount : "" }} -->
+      </div>
+      <div
+        :class="[
+          product.priceDiscount ? 'barred ml-4 text-sm text-gray-500 ' : '',
+        ]"
+      >
+        {{ product.price }}
+      </div>
     </div>
   </div>
 </template>

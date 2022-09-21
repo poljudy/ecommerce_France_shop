@@ -1,22 +1,37 @@
 <template>
-  <div>
-    <div v-if="isInCartVar(product) && this.getQuantityInCart(product) > 0">
+  <div class="mx-auto">
+    <div
+      v-if="isInCartVar(product) && this.getQuantityInCart(product) > 0"
+      class="flex justify-around items-center"
+    >
       <div
         @click="
           this.getQuantityInCart(product) > 0 ? decreaseCartByOne(product) : ''
         "
-        class="bg-teal-500 cursor-pointer"
+        class="w-8 h-8 flex items-center justify-center text-white mx-12 cursor-pointer"
+        :class="[
+          this.getQuantityInCart(product) > 0
+            ? 'bg-teal-500  '
+            : 'bg-gray-200 text-gray-500',
+        ]"
       >
         -
       </div>
-      <div>Quantity : {{ this.getQuantityInCart(product) }}</div>
+      <div class="text-xl font-bold">
+        Quantité : {{ this.getQuantityInCart(product) }}
+      </div>
       <div
         @click="
           this.getQuantityInCart(product) < product.stock
             ? increaseCartByOne(product)
             : ''
         "
-        class="bg-teal-500 cursor-pointer"
+        class="w-8 h-8 flex items-center justify-center text-white bg-teal-500 mx-12 cursor-pointer"
+        :class="[
+          this.getQuantityInCart(product) < product.stock
+            ? 'bg-teal-500  '
+            : 'bg-gray-200 text-gray-500 ',
+        ]"
       >
         +
       </div>
@@ -24,9 +39,9 @@
     <div
       v-else
       @click="increaseCartByOne(product)"
-      class="bg-green-300 cursor-pointer"
+      class="bg-teal-500 cursor-pointer text-center text-lg font-bold uppercase rounded-full py-2 px-8 margin-auto"
     >
-      add
+      add to cart
     </div>
   </div>
 </template>
