@@ -1,15 +1,13 @@
 <template>
   <router-link
     :to="{ name: 'product', params: { id: product.id } }"
-    class="rounded"
+    class="rounded w-56"
   >
-    <div class="">
-      <img
-        :src="product.images.photos[0]"
-        alt="`Image produit"
-        class="w-56 h-72 object-cover rounded-lg"
-      />
-    </div>
+    <img
+      :src="product.images.photos[0]"
+      alt="`Image produit"
+      class="h-72 object-cover rounded-lg"
+    />
     <div class="text-left my-4 text-gray-500">
       {{ product.title }}
     </div>
