@@ -33,7 +33,10 @@
         </div>
       </div>
 
-      <div class="w-3/4 text-sm text-gray-600 mt-8">
+      <div class="font-bold text-gray-500 mt-8 my-4">
+        {{ product.category }}
+      </div>
+      <div class="w-3/4 text-sm text-gray-600">
         {{ product.description }}
       </div>
       <ProductCart :product="product" class="mt-12" />

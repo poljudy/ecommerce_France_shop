@@ -42,7 +42,7 @@
     <div
       v-else
       @click="product.stock > 0 ? increaseCartByOne(product) : ''"
-      class="bg-teal-500 cursor-pointer text-center text-lg font-bold uppercase rounded-full py-2 px-8 margin-auto text-white"
+      class="bg-lime-500 cursor-pointer text-center text-lg font-bold uppercase rounded-full py-2 px-8 margin-auto text-white"
     >
       {{ product.stock > 0 ? "add to cart" : "No stock" }}
     </div>
