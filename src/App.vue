@@ -1,7 +1,7 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link
+    <router-link to="/">Gallerie</router-link>
+    <!-- <router-link
       to="/product/"
       :class="[
         {
@@ -10,7 +10,7 @@
         },
       ]"
       >Product
-    </router-link>
+    </router-link> -->
     |
     <router-link to="/cart">Cart</router-link>
   </nav>

@@ -31,7 +31,14 @@
       </div>
       <div class="text-left w-1/3">
         <div>
-          {{ item.product.title }}
+          {{ item.product.title }} -
+          <span class="text-xs text-gray-400">
+            {{
+              item.product.priceDiscount
+                ? getNumberFromPrice(item.product.priceDiscount)
+                : getNumberFromPrice(item.product.price)
+            }}€
+          </span>
         </div>
         <div class="text-xs text-gray-400">
           total
