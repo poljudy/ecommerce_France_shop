@@ -12,7 +12,7 @@
       >Product
     </router-link> -->
     |
-    <router-link to="/cart">Cart</router-link>
+    <router-link to="/cart">Panier</router-link>
   </nav>
   <router-view />
 </template>
