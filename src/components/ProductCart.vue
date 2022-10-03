@@ -101,7 +101,9 @@ export default {
       const cart = this.getCart();
 
       // const cart = this.cart;
-      return cart.find((element) => element.product.id === product.id);
+      if (cart != null) {
+        return cart.find((element) => element.product.id === product.id);
+      }
     },
 
     increaseCartByOne(product) {
