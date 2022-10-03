@@ -98,7 +98,9 @@ export default {
       return cart.find((element) => element.product.id === product.id);
     },
     isInCartVar(product) {
-      const cart = this.cart;
+      const cart = this.getCart();
+
+      // const cart = this.cart;
       return cart.find((element) => element.product.id === product.id);
     },
 
