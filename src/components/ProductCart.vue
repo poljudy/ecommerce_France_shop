@@ -66,14 +66,18 @@ export default {
     getTotal() {
       const cart = this.getCart();
       let total = 0;
-      cart.forEach((element) => {
-        const priceStr = parseFloat(element.product.price.slice(0, -1));
-        console.log(typeof priceStr);
+      try {
+        cart.forEach((element) => {
+          const priceStr = parseFloat(element.product.price.slice(0, -1));
+          console.log(typeof priceStr);
 
-        total += priceStr;
-      });
-      this.$emit("total", total);
-      return total;
+          total += priceStr;
+        });
+        this.$emit("total", total);
+        return total;
+      } catch (error) {
+        console.log(error);
+      }
     },
     modifyCart(cart) {
       localStorage.setItem("cart", JSON.stringify(cart));
